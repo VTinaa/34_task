@@ -16,60 +16,22 @@
 // 3. Напишіть функцію для пошуку максимальної цифри у числі.
 
 {
-    function findMaxDigit(number) {
-        // Базовий випадок: якщо число менше 10, повертаємо його як максимальну цифру
+    function maxDigit(number) {
         if (number < 10) {
             return number;
         }
 
-        // Рекурсивно визначаємо максимальну цифру в решті числа
-        const maxInRest = findMaxDigit(Math.floor(number / 10));
+        let maxInRest = maxDigit(Math.floor(number / 10));
 
-        // Порівнюємо поточну цифру та максимальну цифру в решті числа
-        const currentDigit = number % 10;
+        let currentDigit = number % 10;
         return Math.max(currentDigit, maxInRest);
     }
-
-    // Приклад використання
-    // const number = 58391;
-    // const maxDigit = findMaxDigit(number);
-    // console.log(`Максимальна цифра у числі ${number} - ${maxDigit}`);
-    console.log(findMaxDigit(56789))
+    console.log(maxDigit(56789))
 }
 
 
 // 4. Напишіть функцію, яка визначає чи є передане число простим.
 
-{
-    //2
-    function isPrime(number, divisor = 2) {
-        // Базовий випадок: якщо число менше або дорівнює 2, то воно є простим
-        if (number <= 2) {
-            return number === 2;
-        }
-    
-        // Базовий випадок: якщо число ділиться націло на будь-який дільник, то воно не є простим
-        if (number % divisor === 0) {
-            return false;
-        }
-    
-        // Інакше, рекурсивно перевіряємо наступні можливі дільники
-        if (divisor * divisor <= number) {
-            return isPrime(number, divisor + 1);
-        }
-    
-        // Якщо немає дільників, то число є простим
-        return true;
-    }
-    
-    // Приклад використання
-    const number = 17;
-    if (isPrime(number)) {
-        console.log(`${number} є простим числом.`);
-    } else {
-        console.log(`${number} не є простим числом.`);
-    }
-}
 
 {
     //2
@@ -88,14 +50,8 @@
         }
         return isPrime(number, divisor + 1);
       }
-      
-      // Приклад використання
-      const number = 17;
-      if (isPrime(number)) {
-        console.log(`${number} є простим числом.`);
-      } else {
-        console.log(`${number} не є простим числом.`);
-      }
+
+      console.log(isPrime(17))
 }
 
 
@@ -104,28 +60,24 @@
 
 {
     function findFactors(number, divisor = 2) {
-        // Базовий випадок: якщо число менше або дорівнює 1, повертаємо пустий масив
+       
         if (number <= 1) {
           return [];
         }
         
-        // Перевіряємо, чи число ділиться націло на поточний дільник
-        if (number % divisor === 0) {
-          // Якщо так, то додаємо дільник до масиву множників і рекурсивно викликаємо функцію для решти числа (number / divisor)
-          const factors = [divisor, ...findFactors(number / divisor, divisor)];
+        if (number % divisor == 0) {
+
+          let factors = [divisor, ...findFactors(number / divisor, divisor)];
           return factors;
         } else {
-          // Якщо число не ділиться націло на поточний дільник, переходимо до наступного дільника (divisor + 1)
+         
           return findFactors(number, divisor + 1);
         }
       }
       
-      // Приклад використання
-      const number = 18;
-      const factors = findFactors(number);
-      console.log(`Множники числа ${number}: ${factors.join(' * ')}`);
+     
+      console.log(findFactors(18).join('*'))
 
-    //   Ця функція використовує рекурсію для знаходження усіх множників переданого числа. Вона розпочинається з дільника 2 та перевіряє, чи число ділиться націло на нього. Якщо так, то додаємо цей дільник до масиву множників та рекурсивно викликаємо функцію для решти числа (number / divisor). Якщо число не ділиться націло на поточний дільник, то переходимо до наступного дільника (divisor + 1). Функція повертає масив множників в зростаючому порядку.
 }
 
 
@@ -135,17 +87,16 @@
     function fibonacci(n) {
         if (n <= 0) {
           return 0;
-        } else if (n === 1) {
+        } else if (n == 1) {
           return 1;
         } else {
-          // Рекурсивно обчислюємо число Фібоначчі, сумуючи два попередні числа
+      
           return fibonacci(n - 1) + fibonacci(n - 2);
         }
       }
       
-      // Приклад використання
-      const n = 6; // Порядковий номер
-      const result = fibonacci(n);
+      let n = 6;
+      let result = fibonacci(n);
       console.log(`Число Фібоначчі з порядковим номером ${n} - ${result}`);
 }
 
